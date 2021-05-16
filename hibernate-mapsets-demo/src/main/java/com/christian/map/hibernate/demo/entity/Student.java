@@ -2,7 +2,9 @@ package com.christian.map.hibernate.demo.entity;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElements;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,12 +23,20 @@ public class Student {
     @Column(name="email")
     private String email;
 
+
+    @ElementCollection
+    @CollectionTable(name="image")
+    @OrderColumn
+    @Column(name="file_name")
+    private List<String> images=new ArrayList<>();
+
+    /*
     @ElementCollection
     @CollectionTable(name="image", //defaults to student_images if not specified
             joinColumns=@JoinColumn(name="student_id"))
     @Column(name="file_name")
     private Set<String> images=new HashSet<String>();
-
+*/
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -65,11 +75,11 @@ public class Student {
         this.email = email;
     }
 
-    public Set<String> getImages() {
+    public List<String> getImages() {
         return images;
     }
 
-    public void setImages(Set<String> images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 

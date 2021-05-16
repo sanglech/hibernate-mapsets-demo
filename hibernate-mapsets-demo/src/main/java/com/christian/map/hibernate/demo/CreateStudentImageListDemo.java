@@ -5,9 +5,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
 import java.util.Set;
 
-public class CreateStudentImageSetDemo {
+public class CreateStudentImageListDemo {
     public static void main (String[]args){
         //create session factory
         SessionFactory factory=new Configuration().configure("hibernate.cfg.xml").
@@ -20,7 +21,7 @@ public class CreateStudentImageSetDemo {
 
             //create the object
             Student tempStudent= new Student("John","Doe","john@doe.com");
-            Set<String> imgs= tempStudent.getImages(); //duplicates removed in hashset
+            List<String> imgs= tempStudent.getImages(); //duplicates removed in hashset
             imgs.add("image1.jpg");
             imgs.add("image2.jpg");
             imgs.add("image3.jpg");
