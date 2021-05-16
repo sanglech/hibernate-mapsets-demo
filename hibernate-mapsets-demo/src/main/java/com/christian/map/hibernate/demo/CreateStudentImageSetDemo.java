@@ -19,11 +19,13 @@ public class CreateStudentImageSetDemo {
         try{
 
             //create the object
-            Student tempStudent= new Student("Christian","Sangle","christian@sangle.com");
+            Student tempStudent= new Student("John","Doe","john@doe.com");
             Set<String> imgs= tempStudent.getImages(); //duplicates removed in hashset
             imgs.add("image1.jpg");
             imgs.add("image2.jpg");
             imgs.add("image3.jpg");
+            imgs.add("image4.jpg");
+            imgs.add("image5.jpg");
             //start a transaction
             session.beginTransaction();
 
