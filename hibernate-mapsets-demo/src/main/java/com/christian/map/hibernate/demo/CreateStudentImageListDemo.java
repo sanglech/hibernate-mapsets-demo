@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class CreateStudentImageListDemo {
@@ -21,12 +22,10 @@ public class CreateStudentImageListDemo {
 
             //create the object
             Student tempStudent= new Student("John","Doe","john@doe.com");
-            List<String> imgs= tempStudent.getImages(); //duplicates removed in hashset
-            imgs.add("image1.jpg");
-            imgs.add("image2.jpg");
-            imgs.add("image3.jpg");
-            imgs.add("image4.jpg");
-            imgs.add("image5.jpg");
+            Map<String,String> imgs= tempStudent.getImages(); //duplicates removed in hashset
+            imgs.put("image1.jpg","Image 1 description");
+            imgs.put("image2.jpg","Image 2 description");
+            imgs.put("image3.jpg","Image 3 description");
             //start a transaction
             session.beginTransaction();
 
