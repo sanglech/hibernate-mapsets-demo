@@ -5,11 +5,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-public class CreateStudentImageListDemo {
+public class GetStudentImagesDemo {
+
     public static void main (String[]args){
         //create session factory
         SessionFactory factory=new Configuration().configure("hibernate.cfg.xml").
@@ -20,21 +19,22 @@ public class CreateStudentImageListDemo {
 
         try{
 
-            //create the object
-            Student tempStudent= new Student("John","Doe","john@doe.com");
-            Set<String> imgs= tempStudent.getImages(); //duplicates removed in hashset
-            imgs.add("image1.jpg");
-            imgs.add("image2.jpg");
-            imgs.add("image3.jpg");
             //start a transaction
             session.beginTransaction();
 
-            //save the obj
-            System.out.println("Saving the student");
-            session.persist(tempStudent);
+            //Get the student id
+            int theId=1;
+            Student student= session.get(Student.class,theId);
+
+            //print the student detail
+            System.out.println("Student details: "+ student);
+
+            //print associated images
+            System.out.println("The associated images: "+ student.getImages());
+            //commit the txn
+            session.getTransaction().commit();
 
             //commit the transaction
-            session.getTransaction().commit();
             System.out.println("Done");
 
         }finally{

@@ -20,15 +20,22 @@ public class Student {
     @Column(name="email")
     private String email;
 
+    // For Sets
+    @ElementCollection
+    @OrderBy("file_name DESC")
+    //@org.hibernate.annotations.OrderBy (clause="file_name desc")
+    @CollectionTable(name="image")
+    @Column(name="file_name")
+    private Set<String> images=new LinkedHashSet<String>();
 
+    /*
     //For mapping
     @ElementCollection
     @CollectionTable(name="image")
     @MapKeyColumn(name="file_name")
     @Column(name="image_name")
     private Map<String,String> images=new HashMap<String,String>();
-
-
+*/
 /*
 //for mapping ordered lists
     @ElementCollection
@@ -45,6 +52,12 @@ public class Student {
     @Column(name="file_name")
     private Set<String> images=new HashSet<String>();
 */
+
+    public Student() {
+
+    }
+
+
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -83,11 +96,11 @@ public class Student {
         this.email = email;
     }
 
-    public Map<String,String> getImages() {
+    public Set<String> getImages() {
         return images;
     }
 
-    public void setImages(Map<String,String> images) {
+    public void setImages(Set<String> images) {
         this.images = images;
     }
 
