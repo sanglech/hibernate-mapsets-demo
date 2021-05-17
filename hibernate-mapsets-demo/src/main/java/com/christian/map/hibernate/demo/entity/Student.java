@@ -22,11 +22,21 @@ public class Student {
 
     // For Sets
     @ElementCollection
+    //@SortComparator(ReverseStringComparator.class)
     @OrderBy("file_name DESC")
     //@org.hibernate.annotations.OrderBy (clause="file_name desc")
     @CollectionTable(name="image")
     @Column(name="file_name")
     private Set<String> images=new LinkedHashSet<String>();
+
+    //if want to sort in memory instead of in db 
+    public static class ReverseStringComparator implements Comparator<String>{
+
+        @Override
+        public int compare(String o1, String o2) {
+            return o2.compareTo(o1);
+        }
+    }
 
     /*
     //For mapping
